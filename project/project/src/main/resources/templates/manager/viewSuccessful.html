@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>viewAllSuccessful</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/manager/style.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/admin/min.css}">
+</head>
+
+<!-- Menu Manager -->
+<nav id="fixNav">
+  <ul>
+    <li><a href="/manager/menu">Trang chủ</a></li>
+    <li>
+      <a href="#">Quản lý sản phẩm</a>
+      <ul class="sub-menu">
+        <li><a href="/manager/viewAllProduct">Danh sách các sản phẩm</a></li>
+        <li><a href="/manager/addProduct">Thêm sản phẩm</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Quản lý đơn hàng</a>
+      <ul class="sub-menu">
+        <li><a href="/manager/viewAllOrders">Yêu cầu đặt hàng</a></li>
+        <li><a href="/manager/viewShipping">Các đơn hàng đang giao</a></li>
+        <li><a href="/manager/viewSuccessful">Các đơn hàng thành công</a></li>
+      </ul>
+    </li>
+    <li><a href="">Phân tích kinh doanh</a></li>
+    <li>
+      <a href="#">Khác</a>
+      <ul class="sub-menu">
+        <li><a href="#">Đổi mật khẩu</a></li>
+        <li><a href="/users/login">Đăng xuất</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- end menu -->
+
+<div class="container">
+  <h2>Danh sách đơn hàng đang chờ</h2>
+
+
+  <!-- Table for manager list -->
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">STT</div>
+      <div class="col col-2">Date</div>
+      <div class="col col-3">User Id</div>
+      <div class="col col-4">Address</div>
+      <div class="col col-4">Phone</div>
+      <div class="col col-5">Total</div>
+      <div class="col col-6">Payment</div>
+      <div class="col col-7">View</div>
+      <div class="col col-8">Cập nhật trạng thái</div>
+    </li>
+
+    <!-- Loop through orders and display them in the table -->
+    <li th:each="order, iterStat : ${orders}" class="table-row">
+      <div class="col col-1" th:text="${iterStat.index + 1}"></div>
+      <!-- Display sequential order number starting from 1 -->
+      <div class="col col-2" th:text="${order.order_date}"></div>
+      <div class="col col-3" th:text="${order.user_id}"></div>
+      <div class="col col-4" th:text="${order.shipping_address}"></div>
+      <div class="col col-4" th:text="${order.phone}"></div>
+      <div class="col col-5" th:text="${order.total_amount}"></div>
+      <div class="col col-6" th:text="${order.payment_method}"></div>
+
+      <div class="col col-7">
+        <!-- Nút xem -->
+        <form action="/manager/viewOrder" method="get" style="display:inline;">
+          <input type="hidden" name="orderId" th:value="${order.id}"/> <!-- Thêm id order -->
+          <button type="submit">Xem</button>
+        </form>
+      </div>
+
+
+    </li>
+  </ul>
+</div>
+
+</html>

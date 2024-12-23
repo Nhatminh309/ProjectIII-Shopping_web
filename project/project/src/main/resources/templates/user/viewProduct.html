@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en" class="color_scheme">
+<head>
+  <meta charset="utf-8" xmlns:th="https://www.thymeleaf.org">
+  <title>
+    Min's shop
+  </title>
+  <link rel="stylesheet" th:href="@{/user/style.css}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <!--[if IE]>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <![endif]-->
+  <script th:src="@{/user/script.js}"></script>
+</head>
+
+<body class="template-index scheme_1">
+<div class="page_wrapper">
+  <!--    Loading page during wait-->
+  <div id="page_preloader__bg">
+    <img id="page_preloader__img"
+         src="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/shopify_logo.gif?v=124153987796372640561553073020"
+         alt="">
+  </div>
+
+  <script>
+      preloaderBg = document.getElementById('page_preloader__bg');
+      preloaderImg = document.getElementById('page_preloader__img');
+
+      window.addEventListener('load', function () {
+          preloaderBg.classList.add("off");
+          preloaderImg.classList.add("off");
+      });
+
+  </script>
+
+
+  <div id="shopify-section-header" class="shopify-section">
+    <div id="pseudo_sticky_block"></div>
+    <header id="page_header">
+      <div class="header_wrap_0"
+           style="background-image: url( //theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/suitup_top_banner.png?v=11381325228835922861553076005 );">
+        <div class="banner_text">
+          <h3><b>Đánh thức</b> phong cách cùng <b>Min shop</b></h3>
+
+          <a href="" class="btn">Mua ngay</a>
+        </div>
+      </div>
+      <div class="page_container">
+        <div class="top_pannel ">
+          <div class="container">
+            <div class="top_pannel_text">Liên hệ trực tiếp chúng tôi qua 0387937760</div>
+
+            <div class="top_pannel_menu">
+              <div class="header_search">
+                                <span class="search_toggle"><i class="fa fa-search"
+                                                               aria-hidden="true"></i><b>Tìm kiếm</b><i
+                                    class="fa fa-times"></i></span>
+                <!--Form search product-->
+                <form action="/search" method="get" role="search" class="search_form">
+                  <input type="search" name="product" placeholder="Search" aria-label="Search">
+                  <button type="submit">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </button>
+                </form>
+                <div id="search_result_container"></div>
+              </div>
+
+              <!--Thông tin tài khoản-->
+              <div class="header_account">
+                <a href="/account" title="Tài khoản"><i class="fa fa-user" aria-hidden="true"></i></a>
+              </div>
+
+
+              <div class="header_wishlist">
+                <a href=""><i class="fa fa-heart" aria-hidden="true"></i><span>Yêu thích</span></a>
+              </div>
+
+              <!--Đơn vị tiền tệ-->
+              <div class="currency_selector">
+                <div class="currency_selector__wrap" title="Currency">
+                  <div id="currency_active">VND</div>
+
+                  <ul id="currency_selector">
+                    <li data-value="VND" id="currency_selected" class="currency_selector__item">
+                      VND
+                    </li>
+
+                    <li data-value="EUR" class="currency_selector__item">EUR</li>
+
+                    <li data-value="USD" class="currency_selector__item">USD</li>
+
+
+                  </ul>
+                </div>
+              </div>
+
+              <script>
+                  theme.shopCurrency = "VND";
+                  theme.moneyFormat = "{{amount}}VND";
+                  theme.moneyFormatCurrency = "{{amount}}VND";
+              </script>
+
+
+              <script
+                  src="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/currency-tools.js?v=56053141205250997201553073018"
+                  defer></script>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="header_wrap1">
+          <div class="container header_main_wrap">
+            <div class="header_wrap2 header_left">
+              <a class="header_logo">
+
+              </a>
+            </div>
+
+            <div class="header_wrap2 header_center">
+
+              <nav id="megamenu" class="megamenu">
+                <div id="megamenu_mobile_close">
+                  <div class="close_icon"></div>
+                </div>
+
+                <!--Trang chủ-->
+                <ul id="megamenu_level__1" class="level_1">
+                  <li class="level_1__item level_2__small">
+                    <a class="level_1__link active" href="/user/menu">Trang chủ</a>
+                  </li>
+
+                  <!--Danh mục theo kiểu quần áo-->
+                  <li class="level_1__item level_2__small">
+
+                    <a class="level_1__link " href="">Danh mục
+                      <i class="level_1__trigger megamenu_trigger"
+                         data-submenu="menu_1553074430946"></i>
+                    </a>
+
+                    <ul class="level_2" id="menu_1553074430946">
+                      <li>
+                        <div>
+                          <ul class="level_3">
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/frontpage">Áo khoác nam</a>
+                            </li>
+
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link"
+                                 href="/collections/women-s-clothing">Áo khoác nữ</a>
+                            </li>
+
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/teens-clothing">Áo ngắn nam</a>
+                            </li>
+
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/frontpage">Áo nữ</a>
+                            </li>
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/teens-clothing">Áo đôi</a>
+                            </li>
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link"
+                                 href="/collections/sale">Quần nam</a>
+                            </li>
+
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/t-shirts">Quần short nam</a>
+                            </li>
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/t-shirts">Quần nữ</a>
+                            </li>
+
+                            <li class="level_3__item ">
+                              <a class="level_3__link" href="/collections/teens-clothing">Váy</a>
+                            </li>
+
+
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+
+                  </li>
+
+                  <!--Các sản phẩm Sale-->
+                  <li class="level_1__item level_2__products">
+
+                    <a class="level_1__link " href="/collections/sale">Sale
+                      <i class="level_1__trigger megamenu_trigger"
+                         data-submenu="menu_1479746552441"></i>
+                    </a>
+
+                  </li>
+
+                </ul>
+              </nav>
+
+            </div>
+
+            <div class="header_wrap2 header_right">
+
+              <!--View Cart-->
+              <div class="header_cart" id="main__cart_item">
+                <a class="cart_link" href="/cart"><b><i class="fa fa-shopping-bag"
+                                                        aria-hidden="true"></i>Giỏ hàng: </b><span
+                    id="cart_items"> 0 </span> sản phẩm</a>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  </div>
+
+
+  <div class="page_container">
+
+    <div class="main_content ">
+      <!-- BEGIN content_for_index -->
+
+      <div id="shopify-section-1523632221771"
+           class="shopify-section section section_homepage section_featured-products">
+
+        <div class="container with_bg" style="background-color: #ffffff;">
+
+          <!--Các sản phẩm-->
+
+          <div class="d-flex hot-product-area">
+            <div th:each="product : ${products}" class="hot-product-item col-xs-3">
+              <div class="hot-product-img">
+                <img th:src="@{/{filename}(filename=${product.mainImage})}" alt="">
+                <!--                <span class="product_badge new">new</span>-->
+              </div>
+              <div class="hot-product-info">
+                <p class="product_name" th:text="${product.product_name}"></p>
+                <div class="product_prop">
+                  <p class="product_price">
+                    <span class="money" th:text="${product.prize}">Giá sản phẩm</span>
+                  </p>
+                </div>
+
+                <div class="product_links">
+                  <a th:href="@{/user/viewDetail(productId=${product.id})}"><i class="fa fa-shopping-cart"></i> Thêm vào
+                    giỏ hàng</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer-->
+    <div id="shopify-section-footer" class="shopify-section">
+
+      <footer style="background: rgba(0,0,0,0);">
+        <div class="footer_row__1">
+          <div class="container">
+
+            <div class="row footer_main">
+
+              <div class="col-sm-3 footer_block footer_block__2_1">
+
+                <div class="footer_item footer_item__about with_bg" style="background: #ffffff;">
+                  <h3>Về chúng tôi</h3>
+
+
+                  <div class="about_text"><p>Min shop là cửa hàng đồ thời trang online
+                    cung cấp đa dạng các mẫu sản phẩm phù hợp với từng lựa chọn của khách hàng</p>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="col-sm-3 footer_block footer_block__2_1">
+
+                <div class="footer_item footer_item__links with_bg" style="background: #ffffff;">
+                  <h3>Footer menu</h3>
+
+                  <ul>
+
+                    <li>
+                      <a href="/">Home page</a>
+                    </li>
+
+                    <li>
+                      <a href="https://www.google.com">Search</a>
+                    </li>
+
+                  </ul>
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3 footer_block ">
+
+                <div class="footer_item footer_item__links with_bg" style="background: #ffffff;">
+                  <h3>Chăm sóc khách hàng</h3>
+
+                  <ul>
+
+                    <li>
+                      <a href="/">Facebook</a>
+                    </li>
+
+                    <li>
+                      <a href="/collections/all">Zalo</a>
+                    </li>
+
+                  </ul>
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="footer_banner"
+             th:style="|background-image: url( /user/image/banner.jpg );|">
+          <div class="banner_text">
+            <h3><b>Min shop</b> đồng hành cùng bạn</h3>
+            <h4>Bạn cũng có thể mua hàng qua các trang thương mại điện tử</h4>
+            <a href=""
+               class="btn">Xem ngay !</a>
+          </div>
+        </div>
+      </footer>
+
+
+
+
+    </div>
+
+  </div>
+
+<script src="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/assets.js?v=154279730773110121271553073018"
+        defer></script>
+<script src="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/shop.js?v=140494813089716702071656107013"
+        defer></script>
+<link href="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/style.scss.css?v=142332748326016068791656107013"
+      rel="stylesheet" type="text/css" media="all"/>
+
+
+
+<noscript id="deferred_styles">
+  <link
+      href="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/assets/responsive.scss.css?v=54019756712969832091553076656"
+      rel="stylesheet" type="text/css" media="all"/>
+
+
+  <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+        rel="stylesheet" type="text/css">
+
+
+</noscript>
+
+<script>
+    const loadDeferredStyles = function () {
+        const addStylesNode = document.getElementById('deferred_styles');
+        const replacement = document.createElement('div');
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement);
+        addStylesNode.parentElement.removeChild(addStylesNode);
+    };
+
+
+    const raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+    if (raf) {
+        raf(() => {
+            window.setTimeout(loadDeferredStyles, 0);
+        });
+    } else {
+        window.addEventListener('load', loadDeferredStyles);
+    }
+</script>
+
+
+<script type="module">!function (o) {
+    (o.Shopify = o.Shopify || {}).modules = !0
+}(window);</script>
+
+<script id="shop-js-analytics" type="application/json">{
+  "pageType": "index"
+}</script>
+
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+
+
+
+<script id="sections-script"
+        data-sections="index-slideshow,index-collections-with-menu,index-lookbook,index-products-carousel,header,footer"
+        defer="defer" src="//theme644-clothes-free.myshopify.com/cdn/shop/t/2/compiled_assets/scripts.js?275"></script>
+
+<script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
+
+
+</body>
+
+</html>

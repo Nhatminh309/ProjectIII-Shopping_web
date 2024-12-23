@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Product</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/manager/updateStyle.css}">
+</head>
+<body>
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+    <label for="tab-1" class="tab">Chỉnh sửa thông tin</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up">
+    <label for="tab-2" class="tab">Chỉnh sửa số lượng</label>
+    <div class="login-form">
+      <div class="sign-in-htm">
+        <form action="/manager/updateInfoProduct" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="productId" th:value="${product.id}"/> <!-- ID sản phẩm -->
+
+          <div class="group">
+            <label for="productName" class="label">Tên sản phẩm</label>
+            <input id="productName" name="productName" type="text" class="input" th:value="${product.product_name}" placeholder="Nhập tên sản phẩm" required>
+          </div>
+
+          <div class="group">
+            <label for="productDescription" class="label">Mô tả sản phẩm</label>
+            <input id="productDescription" name="productDescription" type="text" class="input" th:value="${product.description}" placeholder="Nhập mô tả sản phẩm" required>
+          </div>
+
+          <div class="group">
+            <label for="productType" class="label">Loại sản phẩm</label>
+            <select id="productType" class="input custom-select-bg" name="productType" th:value="${product.type}" required>
+              <option value="ao_khoac_nam">Áo khoác nam</option>
+              <option value="ao_khoac_nu">Áo khoác nữ</option>
+              <option value="ao_ngan_nam">Áo ngắn nam</option>
+              <option value="ao_nu">Áo nữ</option>
+              <option value="ao_doi">Áo đôi</option>
+              <option value="quan_nam">Quần nam</option>
+              <option value="quan_short_nam">Quần short nam</option>
+              <option value="quan_nu">Quần nữ</option>
+              <option value="vay">Váy</option>
+            </select>
+
+
+          </div>
+
+          <div class="group">
+            <label for="productPrize" class="label">Giá</label>
+            <input id="productPrize" name="productPrize" type="number" class="input" th:value="${product.prize}" placeholder="Nhập giá sản phẩm" required>
+          </div>
+
+          <!-- Main Image Upload Section -->
+          <div class="group">
+            <label for="mainImage" class="label">Hình ảnh chính</label>
+            <div>
+              <input id="mainImage" name="mainImage" class="input-file" type="file" accept="image/*" required>
+            </div>
+          </div>
+
+          <!-- Auxiliary Images -->
+          <div class="group">
+            <label for="otherImages" class="label">Các ảnh khác</label>
+            <div>
+              <input id="otherImages" name="otherImages" class="input-file" type="file" multiple>
+            </div>
+
+          </div>
+
+          <div class="group">
+            <input type="submit" class="button" value="Cập nhật">
+          </div>
+
+        </form>
+      </div>
+
+      <div class="sign-up-htm">
+        <form action="/manager/updateQuantity" method="post">
+          <input type="hidden" name="productId" th:value="${product.id}"/> <!-- ID sản phẩm -->
+          <div class="group">
+            <label for="sizeS" class="label">size S</label>
+            <input id="sizeS" name="sizeS" type="number" class="input" th:value="${quantity[0].quantity}" placeholder="Nhập số sản phẩm" required>
+          </div>
+          <div class="group">
+            <label for="sizeM" class="label">size M</label>
+            <input id="sizeM" name="sizeM" type="number" class="input" th:value="${quantity[1].quantity}" placeholder="Nhập số sản phẩm" required>
+          </div>
+          <div class="group">
+            <label for="sizeL" class="label">size L</label>
+            <input id="sizeL" name="sizeL" type="number" class="input" th:value="${quantity[2].quantity}" placeholder="Nhập số sản phẩm" required>
+          </div>
+          <div class="group">
+            <label for="sizeXL" class="label">size XL</label>
+            <input id="sizeXL" name="sizeXL" type="number" class="input" th:value="${quantity[3].quantity}" placeholder="Nhập số sản phẩm" required>
+          </div>
+          <div class="group">
+            <label for="sizeXXL" class="label">size XXL</label>
+            <input id="sizeXXL" name="sizeXXL" type="number" class="input" th:value="${quantity[4].quantity}" placeholder="Nhập số sản phẩm" required>
+          </div>
+          <div class="group">
+            <input type="submit" class="button" value="Cập nhật">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

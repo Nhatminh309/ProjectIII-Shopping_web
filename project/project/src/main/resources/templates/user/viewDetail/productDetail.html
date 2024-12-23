@@ -1,0 +1,118 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Detail Product</title>
+  <link rel="stylesheet" th:href="@{/user/viewDetail.css}">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container" style="width: 80%; height: 40%;">
+  <div class="card">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <!-- Phần xem trước hình ảnh sản phẩm -->
+        <div class="preview col-md-6">
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1">
+              <img th:src="@{/{filename}(filename=${product.mainImage})}" alt="Product Image" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Phần chi tiết sản phẩm -->
+        <div class="details col-md-6">
+          <h3 class="product-title" th:text="${product.product_name}"></h3>
+
+          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+
+          <p class="product-description" th:text="${product.description}"></p>
+          <h4 class="price">Current price: <span th:text="${product.prize} + ' VND'"></span></h4>
+
+          <!-- Chọn kích thước sản phẩm -->
+          <h5 class="sizes">Sizes:
+            <input type="radio" name="size" id="size-s" value="S" hidden required>
+            <label for="size-s" class="size" onclick="updateSize('S')">s</label>
+
+            <input type="radio" name="size" id="size-m" value="M" hidden required>
+            <label for="size-m" class="size" onclick="updateSize('M')">m</label>
+
+            <input type="radio" name="size" id="size-l" value="L" hidden required>
+            <label for="size-l" class="size" onclick="updateSize('L')">l</label>
+
+            <input type="radio" name="size" id="size-xl" value="XL" hidden required>
+            <label for="size-xl" class="size" onclick="updateSize('XL')">xl</label>
+
+            <input type="radio" name="size" id="size-xxl" value="XXL" hidden required>
+            <label for="size-xxl" class="size" onclick="updateSize('XXL')">xxl</label>
+          </h5>
+          <input type="hidden" id="selected-size" name="selectedSize" required>
+
+          <!-- Số lượng sản phẩm -->
+          <div class="quantity" style="margin-top: 16px;">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="100" onchange="updateQuantity()" required>
+            <input type="hidden" id="selected-quantity" name="selectedQuantity" value="1" required>
+          </div>
+
+
+
+          <!-- Hành động thêm vào giỏ hàng -->
+          <div class="action" style="margin-top: 16px;">
+
+            <!-- Form thêm vào giỏ hàng -->
+            <form method="post" action="/user/addToCart">
+              <!-- Trường ẩn cho ID sản phẩm -->
+              <input type="hidden" name="productId" th:value="${product.id}">
+              <input type="hidden" name="prize" th:value="${product.prize}">
+              <!-- Trường ẩn cho kích thước và số lượng sản phẩm -->
+              <input type="hidden" name="size" id="size-hidden">
+              <input type="hidden" name="quantity" id="quantity-hidden">
+
+              <!-- Nút thêm vào giỏ hàng -->
+              <button type="submit" class="add-to-cart btn btn-default">Thêm vào giỏ hàng</button>
+            </form>
+          </div>
+
+        </div>
+
+        <script>
+            function updateSize(size) {
+                document.getElementById('selected-size').value = size;
+                document.getElementById('size-hidden').value = size;
+            }
+
+            function updateQuantity() {
+                const quantity = document.getElementById('quantity').value;
+                document.getElementById('selected-quantity').value = quantity;
+                document.getElementById('quantity-hidden').value = quantity;
+            }
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

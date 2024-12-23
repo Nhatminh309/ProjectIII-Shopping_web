@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/manager/style.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/admin/min.css}">
+</head>
+<body>
+<nav id="fixNav">
+  <ul>
+    <li><a href="/manager/menu">Trang chủ</a></li>
+    <li>
+      <a href="#">Quản lý sản phẩm</a>
+      <ul class="sub-menu">
+        <li><a href="/manager/viewAllProduct">Danh sách các sản phẩm</a></li>
+        <li><a href="/manager/addProduct">Thêm sản phẩm</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Quản lý đơn hàng</a>
+      <ul class="sub-menu">
+        <li><a href="/manager/viewAllOrders">Yêu cầu đặt hàng</a></li>
+        <li><a href="/manager/viewShipping">Các đơn hàng đang giao</a></li>
+        <li><a href="/manager/viewSuccessful">Các đơn hàng thành công</a></li>
+      </ul>
+    </li>
+    <li><a href="">Phân tích kinh doanh</a></li>
+    <li>
+      <a href="#">Khác</a>
+      <ul class="sub-menu">
+        <li><a href="#">Đổi mật khẩu</a></li>
+        <li><a href="/users/login">Đăng xuất</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<form class="form-horizontal" action = "/manager/addProduct" method="post" enctype="multipart/form-data">
+  <fieldset>
+    <legend>PRODUCTS</legend>
+
+    <!-- Product Name -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="name">PRODUCT NAME</label>
+      <div class="col-md-4">
+        <input id="name" name="name" placeholder="PRODUCT NAME" class="form-control input-md" required type="text">
+      </div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="description">PRODUCT DESCRIPTION</label>
+      <div class="col-md-4">
+        <textarea class="form-control" id="description" name="description" required></textarea>
+      </div>
+    </div>
+
+    <!-- Product Type-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="type">PRODUCT TYPE</label>
+      <div class="col-md-4">
+        <select name="type" id="type" required>
+          <option value="ao_khoac_nam">Áo khoác nam</option>
+          <option value="ao_khoac_nu">Áo khoác nữ</option>
+          <option value="ao_ngan_nam">Áo ngắn nam</option>
+          <option value="ao_nu">Áo nữ</option>
+          <option value="ao_doi">Áo đôi</option>
+          <option value="quan_nam">Quần nam</option>
+          <option value="quan_short_nam">Quần short nam</option>
+          <option value="quan_nu">Quần nữ</option>
+          <option value="vay">Váy</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Price -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="prize">PRODUCT PRICE</label>
+      <div class="col-md-4">
+        <input id="prize" name="prize" placeholder="PRODUCT PRICE" class="form-control input-md" required type="number" step="1">
+      </div>
+    </div>
+
+    <!-- Product Size S -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sizeS">Size S</label>
+      <div class="col-md-4">
+        <input id="sizeS" name="sizeS" placeholder="Quantity of size S" class="form-control input-md" required type="number" step="1">
+      </div>
+    </div>
+    <!-- Product Size M -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sizeM">Size M</label>
+      <div class="col-md-4">
+        <input id="sizeM" name="sizeM" placeholder="Quantity of size M" class="form-control input-md" required type="number" step="1">
+      </div>
+    </div>
+    <!-- Product Size L -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sizeL">Size L</label>
+      <div class="col-md-4">
+        <input id="sizeL" name="sizeL" placeholder="Quantity of size L" class="form-control input-md" required type="number" step="1">
+      </div>
+    </div>
+    <!-- Product Size XL -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sizeXL">Size XL</label>
+      <div class="col-md-4">
+        <input id="sizeXL" name="sizeXL" placeholder="Quantity of size XL" class="form-control input-md" required type="number" step="1">
+      </div>
+    </div>
+    <!-- Product Size XXL -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="sizeXXL">Size XXL</label>
+      <div class="col-md-4">
+        <input id="sizeXXL" name="sizeXXL" placeholder="Quantity of size XXL" class="form-control input-md" required type="number" step="1">
+      </div>
+    </div>
+
+    <!-- Main Image -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="mainImage">Main Image</label>
+      <div class="col-md-4">
+        <input id="mainImage" name="mainImage" class="input-file" type="file" required>
+      </div>
+    </div>
+
+    <!-- Auxiliary Images -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="otherImages">Auxiliary Images</label>
+      <div class="col-md-4">
+        <input id="otherImages" name="otherImages" class="input-file" type="file" multiple>
+      </div>
+    </div>
+
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-4">
+        <button type="submit" class="btn btn-primary">Add Product</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring.datasource:
+  url: jdbc:postgresql://localhost:5432/project
+  username: postgres
+  password: 12345678
+
+spring:
+  thymeleaf:
+    prefix: "classpath:/templates/"
+    suffix: ".html"
+    mode: "HTML"
+    encoding: "UTF-8"
+    cache: false
+  servlet:
+    multipart:
+      enabled: true               # Bật xử lý multipart trong Spring Boot
+      max-file-size: 10MB         # Giới hạn kích thước file tải lên tối đa là 10MB
+      max-request-size: 10MB      # Giới hạn kích thước của yêu cầu tải lên (bao gồm tất cả dữ liệu trong form)
+

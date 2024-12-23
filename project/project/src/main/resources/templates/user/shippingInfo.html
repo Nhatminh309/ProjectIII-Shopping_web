@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông Tin Giao Hàng</title>
+  <!-- Liên kết đến Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Liên kết đến CSS tùy chỉnh -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 30px;
+    }
+
+    .form-control {
+      margin-bottom: 15px;
+    }
+
+    .form-select, .form-control {
+      border-radius: 5px;
+      height: 45px;
+    }
+
+    .btn-custom {
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      height: 45px;
+      font-size: 16px;
+    }
+
+    .btn-custom:hover {
+      background-color: #0056b3;
+      color: #fff;
+    }
+
+    label {
+      font-weight: bold;
+      color: #495057;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Thông Tin Giao Hàng</h2>
+  <form action="/user/submitShippingInfo" method="post">
+    <div class="mb-3">
+      <label for="fullName" class="form-label">Họ và Tên</label>
+      <input type="text" class="form-control" id="fullName" name="fullName" th:value="${fullName}" required
+             pattern="[A-Za-zÀ-ỹ\s]+" title="Tên chỉ được phép chứa chữ cái (bao gồm tiếng Việt) và khoảng trắng">
+    </div>
+
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Số Điện Thoại</label>
+      <input type="text" class="form-control" id="phone" name="phone" th:value="${phone}" required
+             pattern="0\d{9}" title="Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số">
+    </div>
+
+    <div class="mb-3">
+      <label for="province" class="form-label">Thành phố/Tỉnh</label>
+      <select class="form-select" id="province" name="province" required>
+        <option th:text="${province}"></option>
+
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="district" class="form-label">Quận/Huyện</label>
+      <select class="form-select" id="district" name="district" required>
+        <option th:text="${district}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="ward" class="form-label">Phường/Xã</label>
+      <select class="form-select" id="ward" name="ward" required>
+        <option th:text="${ward}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Địa Chỉ Cụ Thể</label>
+      <input type="text" class="form-control" id="address" name="address" th:value="${address}" required>
+    </div>
+
+    <button type="submit" class="btn btn-custom w-100">Xác nhận</button>
+  </form>
+
+  <div class="form-footer">
+    <p><a href="/user/viewCart">Quay lại</a></p>
+  </div>
+</div>
+
+<!-- Liên kết đến Bootstrap 5 JS (bao gồm Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const provinceSelect = document.getElementById("province");
+    const districtSelect = document.getElementById("district");
+    const wardSelect = document.getElementById("ward");
+
+    // Lấy danh sách tỉnh/thành
+    fetch("/api/provinces")
+            .then(response => response.json())
+            .then(provinces => {
+              provinces.forEach(province => {
+                const option = new Option(province.name, province.code);
+                provinceSelect.add(option);
+              });
+            });
+
+    // Khi chọn tỉnh, tải danh sách quận/huyện
+    provinceSelect.addEventListener("change", () => {
+      const provinceCode = provinceSelect.value;
+      districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Reset
+      wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>'; // Reset
+
+      if (provinceCode) {
+        fetch(`/api/districts/${provinceCode}`)
+                .then(response => response.json())
+                .then(districts => {
+                  districts.forEach(district => {
+                    const option = new Option(district.name, district.code);
+                    districtSelect.add(option);
+                  });
+                });
+      }
+    });
+
+    // Khi chọn quận, tải danh sách xã/phường
+    districtSelect.addEventListener("change", () => {
+      const districtCode = districtSelect.value;
+      wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>'; // Reset
+
+      if (districtCode) {
+        fetch(`/api/wards/${districtCode}`)
+                .then(response => response.json())
+                .then(wards => {
+                  wards.forEach(ward => {
+                    const option = new Option(ward.name, ward.code);
+                    wardSelect.add(option);
+                  });
+                });
+      }
+    });
+  });
+
+</script>
+
+</html>

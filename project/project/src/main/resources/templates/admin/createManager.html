@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo tài khoản Manager</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/login/register.css}">
+</head>
+<body>
+
+<!-- menu -->
+<nav id="fixNav">
+  <ul>
+    <li><a href="#">Trang chủ</a></li>
+    <li>
+      <a href="#">Tài khoản người dùng</a>
+      <ul class="sub-menu">
+        <li><a href="/admin/viewAllUsers">Xóa tài khoản</a></li>
+        <li><a href="/admin/viewAllUsers">Danh sách tài khoản</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Tài khoản quản lý </a>
+      <ul class="sub-menu">
+        <li><a href="/admin/createManager">Tạo tài khoản</a></li>
+        <li><a href="/admin/viewAllManager">Xóa tài khoản</a></li>
+        <li><a href="/admin/viewAllManager">Danh sách tài khoản</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Khác</a>
+      <ul class="sub-menu">
+        <li><a href="#">Đổi mật khẩu</a></li>
+        <li><a href="#">Đăng xuất</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- end menu -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <h2 class="card-title text-center">Tạo tài khoản cho quản lý</h2>
+        <div class="card-body py-md-4">
+          <!-- Hiển thị thông báo lỗi nếu có -->
+          <div th:if="${errorMessage}" style="color: red;">
+            <p th:text="${errorMessage}"></p>
+          </div>
+          <form action="/admin/creatManager" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" name="username" placeholder="Username">
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" name="confirm-password" placeholder="Confirm-password">
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-between">
+              <button class="btn btn-primary">Tạo tài khoản</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

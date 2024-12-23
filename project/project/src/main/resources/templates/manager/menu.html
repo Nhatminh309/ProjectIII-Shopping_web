@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manager Home</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/admin/style.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/admin/min.css}">
+</head>
+<body>
+<nav id="fixNav">
+  <ul>
+    <li><a href="/manager/menu">Trang chủ</a></li>
+    <li>
+      <a href="#">Quản lý sản phẩm</a>
+      <ul class="sub-menu">
+        <li><a href="/manager/viewAllProduct">Danh sách các sản phẩm</a></li>
+        <li><a href="/manager/addProduct">Thêm sản phẩm</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Quản lý đơn hàng</a>
+      <ul class="sub-menu">
+        <li><a href="/manager/viewAllOrders">Yêu cầu đặt hàng</a></li>
+        <li><a href="/manager/viewShipping">Các đơn hàng đang giao</a></li>
+        <li><a href="/manager/viewSuccessful">Các đơn hàng thành công</a></li>
+      </ul>
+    </li>
+    <li><a href="">Phân tích kinh doanh</a></li>
+    <li>
+      <a href="#">Khác</a>
+      <ul class="sub-menu">
+        <li><a href="#">Đổi mật khẩu</a></li>
+        <li><a href="/users/login">Đăng xuất</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<div>
+  <h2>Đây là trang chủ quản lý shop thời trang</h2>
+
+</div>
+
+</body>
+</html>

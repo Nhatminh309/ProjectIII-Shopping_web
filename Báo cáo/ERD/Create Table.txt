@@ -1,0 +1,151 @@
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    user_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    pass_word character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.users
+    OWNER to postgres;
+
+create table Admin (
+	id varchar(255) primary key,
+	user_name varchar(255),
+	pass_word varchar(255)
+);
+
+create table Product_manager (
+	id varchar(255) primary key,
+	user_name varchar(255),
+	pass_word varchar(255)
+);
+
+CREATE TABLE IF NOT EXISTS public.product
+(
+    product_id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    product_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    type character varying(255) COLLATE pg_catalog."default",
+    prize integer NOT NULL,
+    created_at date NOT NULL,
+    description character varying(255) COLLATE pg_catalog."default",
+    main_images text COLLATE pg_catalog."default",
+    is_deleted boolean NOT NULL DEFAULT false,
+    bought integer,
+    CONSTRAINT product_pkey PRIMARY KEY (product_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.product
+    OWNER to postgres;
+
+create table Image(
+	id varchar(255) primary key,
+	url text NOT NULL,
+	product_id varchar(255) references Product(product_id)
+	
+);
+
+create table Feedback(
+	id varchar(255) primary key,
+	product_id varchar(255) references Product(product_id),
+	user_id varchar(255) references Users(id),
+	review text NOT NULL,
+	created_at date NOT NULL
+	
+);
+
+
+CREATE TABLE IF NOT EXISTS public.quantity
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    product_id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    size character varying(5) COLLATE pg_catalog."default" NOT NULL,
+    quantity smallint NOT NULL,
+    CONSTRAINT quantity_pkey PRIMARY KEY (id),
+    CONSTRAINT quantity_product_id_fkey FOREIGN KEY (product_id)
+        REFERENCES public.product (product_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.quantity
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public.cart_item
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    product_id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    quantity smallint NOT NULL,
+    prize integer NOT NULL,
+    size character varying(5) COLLATE pg_catalog."default",
+    user_id character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT cart_item_pkey PRIMARY KEY (id),
+    CONSTRAINT cart_item_product_id_fkey FOREIGN KEY (product_id)
+        REFERENCES public.product (product_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT cart_item_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.cart_item
+    OWNER to postgres;
+
+create table Card(
+	id varchar(255) primary key,
+	bank varchar(255),
+	number varchar(255),
+	user_id varchar(255)
+);
+
+
+
+CREATE TABLE IF NOT EXISTS public.orders
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    user_id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    order_date date NOT NULL,
+    status character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    total_amount integer NOT NULL,
+    shipping_address character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    payment_method character varying(255) COLLATE pg_catalog."default",
+    phone character varying(11) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT orders_pkey PRIMARY KEY (id),
+    CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.orders
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public.order_item
+(
+    id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    order_id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    product_id character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    quantity smallint NOT NULL,
+    prize integer NOT NULL,
+    total integer NOT NULL,
+    size character varying(5) COLLATE pg_catalog."default",
+    CONSTRAINT order_item_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.order_item
+    OWNER to postgres;

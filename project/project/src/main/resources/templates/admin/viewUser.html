@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>viewUser</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/admin/style.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/admin/min.css}">
+</head>
+<body>
+<!-- menu -->
+<nav id="fixNav">
+  <ul>
+    <li><a href="/admin/menu">Trang chủ</a></li>
+    <li>
+      <a href="#">Tài khoản người dùng</a>
+      <ul class="sub-menu">
+        <li><a href="/admin/viewAllUsers">Xóa tài khoản</a></li>
+        <li><a href="/admin/viewAllUsers">Danh sách tài khoản</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Tài khoản quản lý </a>
+      <ul class="sub-menu">
+        <li><a href="/admin/createManager">Tạo tài khoản</a></li>
+        <li><a href="/admin/viewAllManager">Xóa tài khoản</a></li>
+        <li><a href="/admin/viewAllManager">Danh sách tài khoản</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Khác</a>
+      <ul class="sub-menu">
+        <li><a href="#">Đổi mật khẩu</a></li>
+        <li><a href="#">Đăng xuất</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- end menu -->
+
+<div class="container">
+  <h2>Danh sách người dùng</h2>
+
+  <!-- The form -->
+  <form class="example" action="/admin/findUser" method="get">
+    <input type="text" placeholder="Search by user name" name="user_name">
+    <input type="text" placeholder="Search by email" name="email">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+
+  <!-- Table for user list -->
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Id</div>
+      <div class="col col-2">User name</div>
+      <div class="col col-3">Email</div>
+      <div class="col col-4">Action</div>
+    </li>
+
+    <!-- Loop through users and display them in the table -->
+    <li th:each="user : ${users}" class="table-row">
+      <div class="col col-1" th:text="${user.id}"></div>
+      <div class="col col-2" th:text="${user.user_name}"></div>
+      <div class="col col-3" th:text="${user.email}"></div>
+      <div class="col col-4">
+        <!-- Nút xóa -->
+        <form action="/admin/deleteUser" th:method="delete" style="display:inline;">
+          <input type="hidden" name="userId" th:value="${user.id}"/> <!-- Thêm id người dùng để xóa -->
+          <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

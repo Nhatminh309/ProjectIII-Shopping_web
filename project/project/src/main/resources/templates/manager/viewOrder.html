@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>viewOrder</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/manager/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/min.css}">
+</head>
+
+<!-- Menu Manager -->
+<nav id="fixNav">
+    <ul>
+        <li><a href="/manager/menu">Trang chủ</a></li>
+        <li>
+            <a href="#">Quản lý sản phẩm</a>
+            <ul class="sub-menu">
+                <li><a href="/manager/viewAllProduct">Danh sách các sản phẩm</a></li>
+                <li><a href="/manager/addProduct">Thêm sản phẩm</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Quản lý đơn hàng</a>
+            <ul class="sub-menu">
+                <li><a href="/manager/viewAllOrders">Yêu cầu đặt hàng</a></li>
+                <li><a href="/manager/viewShipping">Các đơn hàng đang giao</a></li>
+                <li><a href="/manager/viewSuccessful">Các đơn hàng thành công</a></li>
+            </ul>
+        </li>
+        <li><a href="">Phân tích kinh doanh</a></li>
+        <li>
+            <a href="#">Khác</a>
+            <ul class="sub-menu">
+                <li><a href="#">Đổi mật khẩu</a></li>
+                <li><a href="/users/login">Đăng xuất</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<!-- end menu -->
+
+<div class="container">
+    <h2>Danh sách sản phẩm</h2>
+
+    <!-- Table for manager list -->
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-2">Id</div>
+            <div class="col col-3">Product name</div>
+            <div class="col col-4">Product img</div>
+            <div class="col col-5">Size</div>
+            <div class="col col-6">Quantity</div>
+            <div class="col col-7">Price</div>
+        </li>
+
+        <!-- Loop through users and display them in the table -->
+        <li th:each="item : ${items}" class="table-row">
+            <div class="col col-2" th:text="${item.productId}"></div>
+            <div class="col col-3" th:text="${item.productName}"></div>
+            <div class="col col-4">
+                <td>
+                    <img th:src="@{/{filename}(filename=${item.productImg})}" alt="Main Image" width="100" height="100"/>
+                </td>
+            </div>
+            <div class="col col-5" th:text="${item.size}"></div>
+            <div class="col col-6" th:text="${item.quantity}"></div>
+            <div class="col col-7" th:text="${item.price}"></div>
+
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
